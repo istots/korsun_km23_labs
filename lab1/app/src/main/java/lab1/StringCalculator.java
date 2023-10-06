@@ -1,5 +1,6 @@
 package lab1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,6 +26,9 @@ public class StringCalculator {
             String[] splittedList = null;
             splittedList = numbers.split(",|\\\\n");
 
+
+            ArrayList<Integer> numberList = new ArrayList<Integer>();
+
             int accumulator = 0;
             for (String element : splittedList){
                 try {
@@ -34,7 +38,16 @@ public class StringCalculator {
                     System.out.printf("Something went wrong! '%s' is not an integer.\n", numbers); 
                     return null;
                 }
-                
+                if (Integer.valueOf(element) < 0) {//записуємо негативні числа в список
+                    numberList.add(Integer.valueOf(element));
+                }
+            }
+            if (numberList.size() > 0) {// обмеження на негативні числа
+                System.out.println("Negatives are not allowed!");
+                for (Integer number : numberList) {
+                    System.out.println(number);
+                }
+                return null;
             }
             return accumulator;
         }

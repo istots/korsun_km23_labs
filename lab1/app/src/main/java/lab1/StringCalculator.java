@@ -6,42 +6,52 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-     java.lang.Integer add(String numbers) throws Exception { 
+    java.lang.Integer add(String numbers) throws Exception {
 
         if (numbers.length() > 0) {
 
             if (numbers.endsWith("\\n")) {
-                System.out.printf("Something went wrong! '%s' is invalid.", numbers); 
+                System.out.printf("Something went wrong! '%s' is invalid.", numbers);
                 return null;
             }
-            //задаємо користувацький роздільник
+            // задаємо користувацький роздільник
             String delimiter = ",";
             Pattern pattern = Pattern.compile("//(.*?)\\\\n(.*)");
             Matcher matcher = pattern.matcher(numbers);
             if (matcher.find()) {
                 delimiter = matcher.group(1);
-                numbers = matcher.group(2).replace(delimiter, ",").replaceAll(",+", ",");
+                numbers = matcher.group(2);
+
+                if (delimiter.startsWith("[") && delimiter.endsWith("]")) {
+                    Pattern pattern1 = Pattern.compile("\\[(.*?)\\]");
+                    Matcher matcher1 = pattern1.matcher(delimiter);
+                    while (matcher1.find()) {
+                        numbers = numbers.replace(matcher1.group(1), ",");
+                    }
+                } else {
+                    numbers = numbers.replace(delimiter, ",");
+                }
+                numbers = numbers.replaceAll(",+", ",");
+
             }
 
             String[] splittedList = null;
             splittedList = numbers.split(",|\\\\n");
 
-
             ArrayList<Integer> numberList = new ArrayList<Integer>();
 
             int accumulator = 0;
-            for (String element : splittedList){
+            for (String element : splittedList) {
                 try {
                     accumulator += Integer.parseInt(element);
-                }
-                catch (NumberFormatException e) {
-                    System.out.printf("Something went wrong! '%s' is not an integer.\n", numbers); 
+                } catch (NumberFormatException e) {
+                    System.out.printf("Something went wrong! '%s' is not an integer.\n", numbers);
                     return null;
                 }
-                if (Integer.valueOf(element) < 0) {//записуємо негативні числа в список
+                if (Integer.valueOf(element) < 0) {// записуємо негативні числа в список
                     numberList.add(Integer.valueOf(element));
                 }
-                if (Integer.valueOf(element) > 1000) { //ігноруємо елементи більше 1000
+                if (Integer.valueOf(element) > 1000) { // ігноруємо елементи більше 1000
                     accumulator -= Integer.parseInt(element);
                     continue;
                 }
@@ -61,12 +71,12 @@ public class StringCalculator {
     public static void main(String[] args) throws Exception {
         System.out.printf("======== LAB 1 ==========\n");
         try (Scanner myscan = new Scanner(System.in)) {
-            System.out.print("\nEnter numbers separated by commas or \\n: "); 
-            String mystr = myscan.nextLine(); 
+            System.out.print("\nEnter numbers separated by commas or \\n: ");
+            String mystr = myscan.nextLine();
             Integer sum = new StringCalculator().add(mystr);
             if (sum != null)
                 System.out.println("Your answer: " + sum);
-        } 
-        System.out.println("\n=====================\n"); 
+        }
+        System.out.println("\n=====================\n");
     }
 }

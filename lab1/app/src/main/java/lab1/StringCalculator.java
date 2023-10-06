@@ -41,6 +41,10 @@ public class StringCalculator {
                 if (Integer.valueOf(element) < 0) {//записуємо негативні числа в список
                     numberList.add(Integer.valueOf(element));
                 }
+                if (Integer.valueOf(element) > 1000) { //ігноруємо елементи більше 1000
+                    accumulator -= Integer.parseInt(element);
+                    continue;
+                }
             }
             if (numberList.size() > 0) {// обмеження на негативні числа
                 System.out.println("Negatives are not allowed!");

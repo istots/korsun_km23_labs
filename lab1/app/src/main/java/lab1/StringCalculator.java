@@ -1,6 +1,8 @@
 package lab1;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
      java.lang.Integer add(String numbers) throws Exception { 
@@ -11,6 +13,15 @@ public class StringCalculator {
                 System.out.printf("Something went wrong! '%s' is invalid.", numbers); 
                 return null;
             }
+            //задаємо користувацький роздільник
+            String delimiter = ",";
+            Pattern pattern = Pattern.compile("//(.*?)\\\\n(.*)");
+            Matcher matcher = pattern.matcher(numbers);
+            if (matcher.find()) {
+                delimiter = matcher.group(1);
+                numbers = matcher.group(2).replace(delimiter, ",");
+            }
+
             String[] splittedList = null;
             splittedList = numbers.split(",|\\\\n");
 

@@ -20,7 +20,7 @@ public class StringCalculator {
             Matcher matcher = pattern.matcher(numbers);
             if (matcher.find()) {
                 delimiter = matcher.group(1);
-                numbers = matcher.group(2).replace(delimiter, ",");
+                numbers = matcher.group(2).replace(delimiter, ",").replaceAll(",+", ",");
             }
 
             String[] splittedList = null;

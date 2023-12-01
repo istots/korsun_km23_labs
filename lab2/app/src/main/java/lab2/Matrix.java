@@ -218,6 +218,16 @@ public class Matrix {
         return result;
     }
 
+    // Діагональна матриця
+    public static Matrix diagonalMatrix(double[] vector) {
+        int n = vector.length;
+        Matrix result = new Matrix(n, n);
+        for (int i = 0; i < n; i++) {
+            result.data[i][i] = vector[i];
+        }
+        return result;
+    }
+
     public double[][] getMatrix() {
         return this.data;
     }

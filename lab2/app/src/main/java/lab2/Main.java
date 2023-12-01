@@ -70,6 +70,12 @@ public class Main {
         System.out.println("Transposed Matrix 1:\n" + transposed);
         ImmutableMatrix transposedMatrix = iMatrix.transpose();
         System.out.println("Transposed immutable matrix 1:\n"+transposedMatrix);
-    
+        // Діагональна матриця
+        Matrix diagonal = Matrix.diagonalMatrix(new double[]{12, 13, 44, -2, 14, -1});
+        System.out.println("Diagonal Matrix:\n" + diagonal);
+        //double[] diagonalValues = {1.0, 2.0, 3.0};
+        ImmutableMatrix diagonalMatrix = ImmutableMatrix.diagonalMatrix(new double[]{12, 13, 44, -2, 14, -1});
+        System.out.println("Diagonal Immutable matrix:\n"+diagonalMatrix);
+
     }
 }

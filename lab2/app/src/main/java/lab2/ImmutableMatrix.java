@@ -87,5 +87,19 @@ public final class ImmutableMatrix {
         return new ImmutableMatrix(transposedData);
     }
 
+    // Конструктор для діагональної матриці
+    public static ImmutableMatrix diagonalMatrix(double[] diagonalValues) {
+        int size = diagonalValues.length;
+        double[][] matrixData = new double[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                matrixData[i][j] = (i == j) ? diagonalValues[i] : 0.0;
+            }
+        }
+
+        return new ImmutableMatrix(matrixData);
+    }
+
 }
 

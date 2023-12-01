@@ -141,4 +141,35 @@ class MatrixTest {
         assertEquals(expectedMatrix, transposedMatrix);
     }
 
+    @Test
+    void diagonalMatrix() {
+        // Тест для створення діагональної матриці з вектора {1, 2, 3}
+        double[] vector1 = {1, 2, 3};
+        Matrix result1 = Matrix.diagonalMatrix(vector1);
+
+        // Перевірка розмірності матриці
+        int[] size1 = result1.getSize();
+        assertEquals(3, size1[0]);
+        assertEquals(3, size1[1]);
+
+        // Перевірка значень на діагоналі
+        for (int i = 0; i < 3; i++) {
+            assertEquals(vector1[i], result1.getElement(i, i));
+        }
+
+        // Тест для створення діагональної матриці з вектора {5, 5, 5}
+        double[] vector2 = {5, 5, 5};
+        Matrix result2 = Matrix.diagonalMatrix(vector2);
+
+        // Перевірка розмірності матриці
+        int[] size2 = result2.getSize();
+        assertEquals(3, size2[0]);
+        assertEquals(3, size2[1]);
+
+        // Перевірка значень на діагоналі
+        for (int i = 0; i < 3; i++) {
+            assertEquals(vector2[i], result2.getElement(i, i));
+        }
+    }
+
 }

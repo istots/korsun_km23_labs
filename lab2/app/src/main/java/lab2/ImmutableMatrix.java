@@ -101,5 +101,13 @@ public final class ImmutableMatrix {
         return new ImmutableMatrix(matrixData);
     }
 
+    public static ImmutableMatrix identityMatrix(int n) {
+        double[][] identityData = new double[n][n];
+        for (int i = 0; i < n; i++) {
+            identityData[i][i] = 1.0;
+        }
+        return new ImmutableMatrix(identityData);
+    }
+
 }
 

@@ -228,6 +228,16 @@ public class Matrix {
         return result;
     }
 
+     // Одинична матриця
+     public static Matrix identityMatrix(int size) {
+        Matrix result = new Matrix(size, size);
+        for (int i = 0; i < size; i++) {
+            result.data[i][i] = 1.0;
+        }
+        return result;
+    }
+    
+
     public double[][] getMatrix() {
         return this.data;
     }

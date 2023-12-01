@@ -42,6 +42,7 @@ public class Matrix {
         }
     }
 
+    //Заповнення матриці значеннями за допомогою масиву value
     public void fill(double[][] value) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -60,4 +61,38 @@ public class Matrix {
         }
         return matrixString.toString();
     }
+    public int getRows() {
+        return rows;
+    }
+    
+    public int getCols() {
+        return cols;
+    }
+
+    // Отримання елемента матриці
+    public double getElement(int row, int col) {
+        return data[row][col];
+    }
+
+    // Отримання рядка матриці
+    public double[] getRow(int row) {
+        if (row < 0 || row >= rows) {
+            throw new IllegalArgumentException("Invalid row index");
+        }
+
+        return data[row].clone(); // Повертаємо клонований масив для інкапсуляції
+    }
+
+    // Отримання стовпця матриці
+    public double[] getCol(int col) {
+        double[] column = new double[rows];
+        for (int i = 0; i < rows; i++) {
+            column[i] = data[i][col];
+        }
+        return column;
+    }
+
+   // public double[][] getMatrix() {
+       // return this.data;
+    //}
 }

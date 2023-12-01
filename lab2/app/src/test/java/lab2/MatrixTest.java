@@ -99,4 +99,38 @@ class MatrixTest {
         assertTrue(matrix1.equals(matrix2));
         assertFalse(matrix1.equals(matrix3));
     }
+
+    @Test
+    void testMatrixAddition() {
+        Matrix matrix1 = new Matrix(new double[][]{{1, 2}, {3, 4}});
+        Matrix matrix2 = new Matrix(new double[][]{{5, 6}, {7, 8}});
+        Matrix expected = new Matrix(new double[][]{{6, 8}, {10, 12}});
+
+        Matrix result = matrix1.add(matrix2);
+
+        assertArrayEquals(expected.getMatrix(), result.getMatrix());
+    }
+
+    @Test
+    void testMatrixScalarMultiplication() {
+        Matrix matrix = new Matrix(new double[][]{{1, 2}, {3, 4}});
+        double scalar = 2;
+        Matrix expected = new Matrix(new double[][]{{2, 4}, {6, 8}});
+
+        Matrix result = matrix.multiply(scalar);
+
+        assertArrayEquals(expected.getMatrix(), result.getMatrix());
+    }
+
+    @Test
+    void testMatrixMultiplication() {
+        Matrix matrix1 = new Matrix(new double[][]{{1, 2}, {3, 4}});
+        Matrix matrix2 = new Matrix(new double[][]{{5, 6}, {7, 8}});
+        Matrix expected = new Matrix(new double[][]{{19, 22}, {43, 50}});
+
+        Matrix result = matrix1.multiply(matrix2);
+
+        assertArrayEquals(expected.getMatrix(), result.getMatrix());
+    }
+    
 }

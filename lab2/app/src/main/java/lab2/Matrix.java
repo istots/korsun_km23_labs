@@ -162,6 +162,51 @@ public class Matrix {
         return true;
     }
 
+    // Операції додавання матриць та множення на скаляр
+    public Matrix add(Matrix other) {
+        if (this.rows != other.rows || this.cols != other.cols) {
+            throw new IllegalArgumentException("Matrix dimensions must be the same");
+        }
+
+        Matrix result = new Matrix(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.data[i][j] = this.data[i][j] + other.data[i][j];
+            }
+        }
+        return result;
+    }
+
+    public Matrix multiply(double scalar) {
+        Matrix result = new Matrix(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.data[i][j] = this.data[i][j] * scalar;
+            }
+        }
+        return result;
+    }
+
+    // Операція множення матриць
+    public Matrix multiply(Matrix other) {
+        if (this.cols != other.rows) {
+            throw new IllegalArgumentException(
+                    "Number of columns in the first matrix must be equal to the number of rows in the second matrix");
+        }
+
+        Matrix result = new Matrix(this.rows, other.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < other.cols; j++) {
+                double sum = 0.0;
+                for (int k = 0; k < this.cols; k++) {
+                    sum += this.data[i][k] * other.data[k][j];
+                }
+                result.data[i][j] = sum;
+            }
+        }
+        return result;
+    }
+
     public double[][] getMatrix() {
         return this.data;
     }

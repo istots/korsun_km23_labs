@@ -1,6 +1,7 @@
 package lab2;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Matrix {
     private final int rows;
@@ -236,7 +237,26 @@ public class Matrix {
         }
         return result;
     }
-    
+
+     // Матриця-рядок з випадковими значеннями
+    public static Matrix randomRowMatrix(int size) {
+        Random random = new Random();
+        double[][] data = new double[1][size];
+        for (int i = 0; i < size; i++) {
+            data[0][i] = random.nextDouble();
+        }
+        return new Matrix(data);
+    }
+
+    // Матриця-стовпець з випадковими значеннями
+    public static Matrix randomColumnMatrix(int size) {
+        Random random = new Random();
+        double[][] data = new double[size][1];
+        for (int i = 0; i < size; i++) {
+            data[i][0] = random.nextDouble();
+        }
+        return new Matrix(data);
+    }
 
     public double[][] getMatrix() {
         return this.data;

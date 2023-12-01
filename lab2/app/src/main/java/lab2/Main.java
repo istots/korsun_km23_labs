@@ -76,7 +76,10 @@ public class Main {
         // Одинична матриця
         Matrix identity = Matrix.identityMatrix(3);
         System.out.println("Identity Matrix:\n" + identity);
-        ImmutableMatrix identityMatrix = ImmutableMatrix.identityMatrix(3);
-        System.out.println(identityMatrix);
+        // Матриця-рядок та матриця-стовпець з випадковими значеннями
+        Matrix randomRow = Matrix.randomRowMatrix(4);
+        Matrix randomColumn = Matrix.randomColumnMatrix(4);
+        System.out.println("Random Row Matrix:\n" + randomRow);
+        System.out.println("Random Column Matrix:\n" + randomColumn);
     }
 }

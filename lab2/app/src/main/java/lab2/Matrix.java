@@ -91,8 +91,14 @@ public class Matrix {
         }
         return column;
     }
+    
+    // Розмірність матриці
+    public int[] getSize() {
+        return new int[] { rows, cols };
+    }
 
-   // public double[][] getMatrix() {
-       // return this.data;
-    //}
+
+    public double[][] getMatrix() {
+        return this.data;
+    }
 }

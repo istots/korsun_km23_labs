@@ -5,6 +5,7 @@ public class Main {
         // Приклад використання класу
         Matrix matrix1 = new Matrix(new double[][]{{3, 0, 8}, {1, 8, -6}, {-1, 8, 9}});
         Matrix matrix2 = new Matrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}});
+        Matrix matrix4 = new Matrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}, {-1, 8, 9}});
 
         Matrix empty = new Matrix();
         Matrix value = new Matrix(2,3);
@@ -30,6 +31,9 @@ public class Main {
         for (double val : column) {
             System.out.print(val + " ");
         }
+        //Розмірність матриці
+        System.out.println("\nSize of matrix 2: "+ matrix2.getSize()[0] + "*" + matrix2.getSize()[1]);
+        System.out.println("Size of matrix 4: "+ matrix4.getSize()[0] + "*" + matrix4.getSize()[1]); 
          
     }
 }

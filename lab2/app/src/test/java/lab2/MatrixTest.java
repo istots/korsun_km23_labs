@@ -132,5 +132,13 @@ class MatrixTest {
 
         assertArrayEquals(expected.getMatrix(), result.getMatrix());
     }
-    
+
+    @Test
+    void transpose() {
+        Matrix originalMatrix = new Matrix(new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+        Matrix transposedMatrix = originalMatrix.transpose();
+        Matrix expectedMatrix = new Matrix(new double[][]{{1, 4, 7}, {2, 5, 8}, {3, 6, 9}});
+        assertEquals(expectedMatrix, transposedMatrix);
+    }
+
 }

@@ -55,5 +55,37 @@ public final class ImmutableMatrix {
         return matrixString.toString();
     }
 
+    // Множення незмінної матриці на скаляр
+    public ImmutableMatrix multiply(double scalar) {
+        Matrix result = matrix.multiply(scalar);
+        return new ImmutableMatrix(result);
+    }
+
+    // Додавання двох матриць
+    public ImmutableMatrix add(ImmutableMatrix other) {
+        Matrix result = matrix.add(other.matrix);
+        return new ImmutableMatrix(result);
+        }
+
+    // Множення матриці на матрицю
+    public ImmutableMatrix multiply(ImmutableMatrix other) {
+        Matrix result = matrix.multiply(other.matrix);
+        return new ImmutableMatrix(result);
+    }
+    public ImmutableMatrix transpose() {
+        int rows = getSize()[0];
+        int cols = getSize()[1];
+
+        double[][] transposedData = new double[cols][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                transposedData[j][i] = matrix.getElement(i, j);
+            }
+        }
+
+        return new ImmutableMatrix(transposedData);
+    }
+
 }
 

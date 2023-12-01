@@ -207,6 +207,17 @@ public class Matrix {
         return result;
     }
 
+    // Транспонована матриця
+    public Matrix transpose() {
+        Matrix result = new Matrix(cols, rows);
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                result.data[i][j] = this.data[j][i];
+            }
+        }
+        return result;
+    }
+
     public double[][] getMatrix() {
         return this.data;
     }

@@ -44,11 +44,13 @@ public class Main {
         System.out.println("Matrix 1 equals Matrix 4: " + matrix1.equals(matrix4));
         // Незмінна матриця
         ImmutableMatrix iMatrix = new ImmutableMatrix(matrix2);
-        ImmutableMatrix iMatrix2 = new ImmutableMatrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}, {-1, 8, 9}});
+        ImmutableMatrix iMatrix2 = new ImmutableMatrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}});
         System.out.println("Immutable Matrix 1:\n" + iMatrix);
         System.out.println("Hash code of immutable matrix 2: " + iMatrix2.hashCode());
         System.out.println("Immutable matrix equals Matrix 2: " + iMatrix.equals(matrix2));
         System.out.println("Matrix 2 equals immutable matrix by value: " + matrix2.equals(iMatrix));
+        ImmutableMatrix scalarResult = iMatrix.multiply(2.0);
+
 
         // Операції з матрицями
         Matrix sum = matrix1.add(matrix2);
@@ -57,5 +59,17 @@ public class Main {
         System.out.println("Sum:\n" + sum);
         System.out.println("Scalar:\n" + productScalar);
         System.out.println("Product (Matrix):\n" + productMatrix);
+        System.out.println("Immutable matrix (scalar):\n" + scalarResult);
+        ImmutableMatrix sumResult = iMatrix.add(iMatrix2);
+        System.out.println("Sum immutable:\n"+ sumResult);
+        ImmutableMatrix productResult = iMatrix.multiply(iMatrix2);
+        System.out.println("Multiply immutable matrix:\n" + productResult);
+
+        // Транспонована матриця
+        Matrix transposed = matrix1.transpose();
+        System.out.println("Transposed Matrix 1:\n" + transposed);
+        ImmutableMatrix transposedMatrix = iMatrix.transpose();
+        System.out.println("Transposed immutable matrix 1:\n"+transposedMatrix);
+    
     }
 }

@@ -42,6 +42,12 @@ public class Main {
         //перевірка чи дві матриці рівні
         System.out.println("Matrix 1 equals Matrix 3: " + matrix1.equals(matrix3));
         System.out.println("Matrix 1 equals Matrix 4: " + matrix1.equals(matrix4));
-         
+        // Незмінна матриця
+        ImmutableMatrix iMatrix = new ImmutableMatrix(matrix2);
+        ImmutableMatrix iMatrix2 = new ImmutableMatrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}, {-1, 8, 9}});
+        System.out.println("Immutable Matrix 1:\n" + iMatrix);
+        System.out.println("Hash code of immutable matrix 2: " + iMatrix2.hashCode());
+        System.out.println("Immutable matrix equals Matrix 2: " + iMatrix.equals(matrix2));
+        System.out.println("Matrix 2 equals immutable matrix by value: " + matrix2.equals(iMatrix));
     }
 }

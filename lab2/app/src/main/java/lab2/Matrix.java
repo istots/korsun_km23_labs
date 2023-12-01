@@ -23,6 +23,14 @@ public class Matrix {
         }
     }
 
+
+    public Matrix(Matrix matrix) {
+        double[][] localData = matrix.getMatrix();
+        this.rows = localData.length;
+        this.cols = localData[0].length;
+        this.data = localData;
+    }
+
     // Створення пустої матриці
     public Matrix() {
         this.rows = 0;
@@ -112,6 +120,29 @@ public class Matrix {
             return true;
         if (otherMatrix == null || getClass() != otherMatrix.getClass())
             return false;
+
+        int[] size1 = this.getSize();
+        int[] size2 = otherMatrix.getSize();
+
+        // Перевірка розмірностей матриць
+        if (size1[0] != size2[0] || size1[1] != size2[1])
+            return false;
+
+        // Перевірка елементів матриць
+        for (int i = 0; i < size1[0]; i++) {
+            for (int j = 0; j < size1[1]; j++) {
+                if (this.getElement(i, j) != otherMatrix.getElement(i, j))
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean equals(ImmutableMatrix otherMatrix) {
+        // if (this == otherMatrix) return true;
+        // if (otherMatrix == null || getClass() != otherMatrix.getClass()) return
+        // false;
 
         int[] size1 = this.getSize();
         int[] size2 = otherMatrix.getSize();

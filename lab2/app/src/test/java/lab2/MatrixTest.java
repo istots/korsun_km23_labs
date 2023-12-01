@@ -70,4 +70,33 @@ class MatrixTest {
         assertArrayEquals(new double[]{2.0, 5.0, 8.0}, matrix.getCol(1));
         assertThrows(IllegalArgumentException.class, () -> matrix.getCol(5));
     }
+
+    @Test
+    void testHashCode() {
+        double[][] data1 = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
+        double[][] data2 = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
+        double[][] data3 = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+
+        Matrix matrix1 = new Matrix(data1);
+        Matrix matrix2 = new Matrix(data2);
+        Matrix matrix3 = new Matrix(data3);
+
+        assertEquals(matrix1.hashCode(), matrix2.hashCode());
+        assertNotEquals(matrix1.hashCode(), matrix3.hashCode());
+    }
+
+    @Test
+    void testEquals() {
+        double[][] data1 = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
+        double[][] data2 = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
+        double[][] data3 = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
+
+        Matrix matrix1 = new Matrix(data1);
+        Matrix matrix2 = new Matrix(data2);
+        Matrix matrix3 = new Matrix(data3);
+
+        // Очікуємо, що матриці matrix1 і matrix2 не рівні, а matrix1 і matrix3 - рівні
+        assertTrue(matrix1.equals(matrix2));
+        assertFalse(matrix1.equals(matrix3));
+    }
 }

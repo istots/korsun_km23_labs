@@ -91,12 +91,45 @@ public class Matrix {
         }
         return column;
     }
-    
+
     // Розмірність матриці
     public int[] getSize() {
         return new int[] { rows, cols };
     }
 
+    // Хеш код
+    public int hashCode() {
+        int result = 0;
+        for (int i = 0; i < data.length; i++) {
+            result += Arrays.hashCode(data[i]);
+        }
+        return result;
+    }
+
+     // Метод для порівняння двох матриць на рівність
+     public boolean equals(Matrix otherMatrix) {
+        if (this == otherMatrix)
+            return true;
+        if (otherMatrix == null || getClass() != otherMatrix.getClass())
+            return false;
+
+        int[] size1 = this.getSize();
+        int[] size2 = otherMatrix.getSize();
+
+        // Перевірка розмірностей матриць
+        if (size1[0] != size2[0] || size1[1] != size2[1])
+            return false;
+
+        // Перевірка елементів матриць
+        for (int i = 0; i < size1[0]; i++) {
+            for (int j = 0; j < size1[1]; j++) {
+                if (this.getElement(i, j) != otherMatrix.getElement(i, j))
+                    return false;
+            }
+        }
+
+        return true;
+    }
 
     public double[][] getMatrix() {
         return this.data;

@@ -34,6 +34,14 @@ public class Main {
         //Розмірність матриці
         System.out.println("\nSize of matrix 2: "+ matrix2.getSize()[0] + "*" + matrix2.getSize()[1]);
         System.out.println("Size of matrix 4: "+ matrix4.getSize()[0] + "*" + matrix4.getSize()[1]); 
+        //Хеш код
+        System.out.println("Hash code of matrix 1: " + matrix1.hashCode());
+        System.out.println("Hash code of matrix 2: " + matrix2.hashCode());
+        System.out.println("Hash code of matrix 3: " + matrix3.hashCode());
+        System.out.println("Hash code of matrix 4: " + matrix4.hashCode());
+        //перевірка чи дві матриці рівні
+        System.out.println("Matrix 1 equals Matrix 3: " + matrix1.equals(matrix3));
+        System.out.println("Matrix 1 equals Matrix 4: " + matrix1.equals(matrix4));
          
     }
 }

@@ -261,4 +261,60 @@ public class Matrix {
     public double[][] getMatrix() {
         return this.data;
     }
+
+    
+    // Метод для виконання LU розкладання з параметрами L і U та частковим вибором головного елементу
+    public void performLUDecomposition(double[][] L, double[][] U) {
+        double[][] matrix = this.data;
+        int n = matrix.length;
+
+        int[] pivot = new int[n];
+
+        // Ініціалізація масиву півотів
+        for (int i = 0; i < n; i++) {
+            pivot[i] = i;
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i <= j) {
+                    U[i][j] = matrix[pivot[i]][j];
+                    for (int k = 0; k < i; k++) {
+                        U[i][j] -= L[i][k] * U[k][j];
+                    }
+                    if (i == j) {
+                        L[i][j] = 1;
+                    } else {
+                        L[i][j] = 0;
+                    }
+                } else {
+                    L[i][j] = matrix[pivot[i]][j];
+                    for (int k = 0; k < j; k++) {
+                        L[i][j] -= L[i][k] * U[k][j];
+                    }
+                    if (U[j][j] != 0) {
+                        L[i][j] /= U[j][j];
+                    } else {
+                        // Handle division by zero or very small numbers
+                        // You may add specific handling based on your requirements
+                        L[i][j] = 0;
+                    }
+                    U[i][j] = 0;
+                }
+            }
+
+            // Вибір головного елементу з урахуванням часткового вибору
+            int maxIndex = i;
+            for (int k = i + 1; k < n; k++) {
+                if (Math.abs(U[k][i]) > Math.abs(U[maxIndex][i])) {
+                    maxIndex = k;
+                }
+            }
+
+            // Перестановка рядків
+            int temp = pivot[i];
+            pivot[i] = pivot[maxIndex];
+            pivot[maxIndex] = temp;
+        }
+    }
 }

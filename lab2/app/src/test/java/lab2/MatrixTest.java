@@ -172,4 +172,36 @@ class MatrixTest {
         }
     }
 
+    @Test
+    void testRandomRowMatrix() {
+        int size = 5;
+        Matrix randomRowMatrix = Matrix.randomRowMatrix(size);
+
+        // Перевірка розмірності
+        assertEquals(1, randomRowMatrix.getRows());
+        assertEquals(size, randomRowMatrix.getCols());
+
+        // Перевірка значень
+        for (int i = 0; i < size; i++) {
+            double value = randomRowMatrix.getElement(0, i);
+            assertTrue(value >= 0.0 && value <= 100.0); // Припускаємо, що значення знаходяться в діапазоні [0, 100)
+        }
+    }
+
+    @Test
+    void testRandomColumnMatrix() {
+        int size = 5;
+        Matrix randomColumnMatrix = Matrix.randomColumnMatrix(size);
+
+        // Перевірка розмірності
+        assertEquals(size, randomColumnMatrix.getRows());
+        assertEquals(1, randomColumnMatrix.getCols());
+
+        // Перевірка значень
+        for (int i = 0; i < size; i++) {
+            double value = randomColumnMatrix.getElement(i, 0);
+            assertTrue(value >= 0.0 && value <= 100.0); // Припускаємо, що значення знаходяться в діапазоні [0, 100)
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 package lab2;
 
+import java.util.Random;
+
 public final class ImmutableMatrix {
     private final Matrix matrix;
 
@@ -101,6 +103,7 @@ public final class ImmutableMatrix {
         return new ImmutableMatrix(matrixData);
     }
 
+    //Одинична матриця
     public static ImmutableMatrix identityMatrix(int n) {
         double[][] identityData = new double[n][n];
         for (int i = 0; i < n; i++) {
@@ -109,5 +112,28 @@ public final class ImmutableMatrix {
         return new ImmutableMatrix(identityData);
     }
 
+    // Метод для генерації випадкової матриці стовпців розмірністю n x 1
+    public static ImmutableMatrix randomColumnMatrix(int n) {
+        double[][] randomData = new double[n][1];
+        Random random = new Random();
+        for (int i = 0; i < n; i++) {
+            randomData[i][0] = random.nextDouble();
+        }
+        return new ImmutableMatrix(randomData);
+    }
+    
+    // Метод для генерації випадкової матриці рядків розмірністю 1 x m
+    public static ImmutableMatrix randomRowMatrix(int m) {
+        double[][] randomData = new double[1][m];
+        Random random = new Random();
+        for (int i = 0; i < m; i++) {
+            randomData[0][i] = random.nextDouble();
+        }
+        return new ImmutableMatrix(randomData);
+    }
+    public void performLUDecomposition(double[][] L, double[][] U) {
+        matrix.performLUDecomposition(L, U);
+    }
 }
+
 

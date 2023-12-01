@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         // Приклад використання класу
         Matrix matrix1 = new Matrix(new double[][]{{3, 0, 8}, {1, 8, -6}, {-1, 8, 9}});
-        Matrix matrix2 = new Matrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}});
+        Matrix matrix2 = new Matrix(new double[][]{{5, 2, 3}, {4, 0, 6}, {7, 8, 0}});
         Matrix matrix4 = new Matrix(new double[][]{{0, 2, 3}, {4, 0, 6}, {7, 8, 0}, {-1, 8, 9}});
 
         Matrix empty = new Matrix();
@@ -81,5 +81,26 @@ public class Main {
         Matrix randomColumn = Matrix.randomColumnMatrix(4);
         System.out.println("Random Row Matrix:\n" + randomRow);
         System.out.println("Random Column Matrix:\n" + randomColumn);
+        int n = 3;
+        double[][] matrixLower = new double[n][n];
+        double[][] matrixUpper = new double[n][n];
+        iMatrix.performLUDecomposition(matrixLower, matrixUpper);
+        System.out.println("Matrix 2 after elimination to upper triangular form:");
+        printMatrix(matrixUpper);
+        System.out.println("Matrix 2 after elimination to lower triangular form:");
+        printMatrix(matrixLower);
+    }
+    // Метод для виведення матриці
+    private static void printMatrix(double[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
